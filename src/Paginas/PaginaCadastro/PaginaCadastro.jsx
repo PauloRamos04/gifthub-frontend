@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/PaginaCadastro.css";
 import NavBar from "../../Componentes/Menu/NavBar";
-import Rodape from '../../Componentes/Rodape'
+import Rodape from '../../Componentes/Rodape';
 import { FaCircle } from "react-icons/fa";
 import { CiCalendarDate } from "react-icons/ci";
 
