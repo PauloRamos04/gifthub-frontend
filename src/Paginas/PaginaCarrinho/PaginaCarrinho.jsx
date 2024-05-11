@@ -1,81 +1,52 @@
 import React from "react";
-import './Cadastro.css';
-import NavBar from "./NavBar";
-import { FaCircle } from "react-icons/fa";
-import { CiCalendarDate } from "react-icons/ci";
+import "./styles/PaginaCarrinho.css";
+import NavBar from "../../Componentes/Menu/NavBar";
+import Rodape from '../../Componentes/Rodape';
+import Card from "./assets/psn-card.jpg"
 
-function Cadastro() {
+function PaginaCarrinho() {
     return (
         <div>
-            <NavBar />
-            <form action="" className="form-cadastro">
-                <h1 className="title-cadastro">Criar uma conta</h1>
-                <div className="informacoes-jogador">
-                    <FaCircle className="circle-icon-jogador"/>
-                    <h2 className="subtitle-cadastro">Informações do Jogador</h2>
-                    <div>
-                        <input type="text" name="nome" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-nome">Nome</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="email" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-email">E-mail</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cpf" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cpf">CPF</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="date" name="dt-nasc" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-nasc">Data de Nascimento</label>
-                        <CiCalendarDate className="date-icon"/>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="senha" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-senha">Senha</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="senha" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-repsenha">Repetir Senha</label>
-                    </div>
+            <div>
+                <NavBar></NavBar>
+            </div>
+            <div className="title-carrinho">
+                <h1>Carrinho de compras</h1>
+            </div>
+            <div className="descricao-carrinho">
+                <ul>
+                    <li>Itens</li>
+                    <li>Preço</li>
+                    <li>Quantidade</li>
+                    <li>Subtotal</li>
+                </ul>
+            </div>
+            <div className="informacoes-carrinho">
+                <hr className="linha-carrinho1"/>
+                <img src={Card} alt="card-produto"  className="card-carrinho"/>
+                <ul>
+                    <li className="preco">R$ 150,00</li>
+                    <li className="quantidade">1</li>
+                    <li className="subtotal">R$ 150,00</li>
+                </ul>
+                <hr className="linha-carrinho2"/>
+            </div>
+            <div className="resumo">
+                <h2>Resumo</h2>
+                <hr className="line-resumo"/>
+                <h3>Total do pedido</h3>
+                <h3 className="total-pedido">R$ 150,00</h3>
+                <div>
+                    <a href="#">
+                        <button className="btn-resumo">Comprar</button>
+                    </a>
                 </div>
-
-                <div className="endereco-jogador">
-                    <FaCircle className="circle-icon-jogador"/>
-                    <h2 className="subtitle-cadastro">Endereço do Jogador</h2>
-                    <div>
-                        <input type="text" name="pais" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-pais">País</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cep" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cep">CEP</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cidade" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cidade">Cidade</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="estado" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-estado">Estado</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="rua" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-rua">Rua</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="numero" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-numero">Nº</label>
-                    </div>
-                </div>    
-                <button type="submit" className="btn-cadastro">Cadastrar-se</button>
-                <hr className="line-cadastro"/>
-                <a href="#">
-                    <h2 className="tem-conta">Já tenho uma <u>conta</u></h2>
-                </a> 
-            </form>
+            </div>
+            <div>
+                <Rodape />
+            </div>
         </div>
     );
 }
 
-export default Cadastro;
+export default PaginaCarrinho;
