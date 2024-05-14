@@ -4,38 +4,37 @@ main {
     font-weight: 600;
 }
 
-.container {
-    margin: 2em 1em;
+.container_card {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 5px;
 }
 
-.container_cards {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  
-  .card {
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-image {
-    width: 100%;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-  
-  .card-content {
-    padding: 15px;
-  }
-  
-  .card-title {
-    margin-top: 0;
-  }
-  
-  .card-description {
-    color: #666;
-  }
+.titulo_card {
+  margin: 0.5em 2em 0em 2em;
+}
+
+ /* Estilos para o card */
+ .card {
+  width: 200px;
+  height: 217px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  margin: 2em;
+}
+
+.verMais {
+  width: 200px;
+  height: 217px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  margin: 2em;
+  background-color: #393939;
+  align-items: center;
+}
+
+h2 {
+  color: #ffffff;
+  text-align: center;
+  align-items: center;
+}

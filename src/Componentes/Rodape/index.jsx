@@ -12,7 +12,7 @@ export default function Rodape() {
   return (
     <footer className={styles.container}>
         <div className={styles.container_logo}>
-            <a href="#"><img className={styles.logo_rodape} src={logoRodape} alt="Logo GiftHub" /></a>
+            <img className={styles.logo_rodape} src={logoRodape} alt="Logo GiftHub" />
         </div>
         <div className={styles.container_informacoes}>
             <div className={styles.container_informacoes_social}>
