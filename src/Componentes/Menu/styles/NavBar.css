@@ -1,0 +1,90 @@
+.navigation {
+    position: fixed;
+    height: 70px;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: #393939;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 17px 59px 11px rgba(63, 0, 199, 0.62);
+    -moz-box-shadow: 0px 17px 59px 11px rgba(63, 0, 199, 0.62);
+    box-shadow: 0px 17px 59px 11px rgba(63, 0, 199, 0.62);
+}
+
+.logo {
+    position: relative;
+    top: -40px;
+    left: 20px;
+}
+
+.navigation ul {
+    position: relative;
+    bottom: 175px;
+    left: 150px;
+}
+
+.navigation li {
+    display: inline-block;
+    margin-left: 40px;
+    width: 90px;
+    height: 35px;
+    padding-top: 25px;
+    font-weight: bold;
+    list-style: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-navabar {
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.btn-navabar:hover {
+    background-color: #a581ff5b;
+    -webkit-box-shadow: 0px 0px 400px 86px #a481ff;
+    box-shadow: 0px 0px 400px 86px #a481ff;
+    text-decoration: underline white;
+}
+
+.input-navbar {
+    width: 120%;
+    height: 70%;
+    background-color: white;
+    margin-left: -15px;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 15px;
+}
+
+.icon-glass {
+    position: absolute;
+    left: 59%;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #393939;
+}
+
+.icon-basket {
+    position: absolute;
+    left: 83%;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: white;
+}
+
+.line {
+    width: 30px; 
+    background-color: white; 
+    transform: rotate(90deg);
+    margin-right: 100px;
+    margin-top: 30px;
+}
