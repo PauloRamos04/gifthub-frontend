@@ -1,0 +1,139 @@
+.title-carrinho {
+    position: relative;
+    top: 100px;
+    color: white;
+    left: 100px;
+    width: 500px;
+}
+
+.descricao-carrinho ul{
+    position: relative;
+    top: 100px;
+    left: -190px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 300px;
+    list-style: none;
+}
+
+.descricao-carrinho ul li {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.linha-carrinho1 {
+    position: relative;
+    width: 60%;
+    top:  100px;
+    left: -160px;
+}
+
+.informacoes-carrinho .card-carrinho {
+    position: relative;
+    left: 100px;
+    top: 120px;
+    width: 120px;
+    border-radius: 20px;
+    
+}
+
+.informacoes-carrinho ul {
+    position: relative;
+    top: 10px;
+    left: -130px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 390px;
+    list-style: none;
+}
+
+.informacoes-carrinho ul li {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.informacoes-carrinho .preco {
+    position: relative;
+    left: 35px;
+    text-align: center;
+    width: 90px;
+    height: 20px;
+    border: 2px solid #FA00FF;
+}
+
+.informacoes-carrinho .quantidade {
+    position: relative;
+    left: 30px;
+    text-align: center;
+    width: 30px;
+    height: 20px;
+    border: 2px solid #FA00FF;
+}
+
+.informacoes-carrinho .subtotal {
+    position: relative;
+    left: 45px;
+    text-align: center;
+    width: 90px;
+    height: 20px;
+    border: 2px solid #FA00FF;
+}
+
+.linha-carrinho2 {
+    position: relative;
+    width: 60%;
+    top:  100px;
+    left: -160px;
+}
+
+.resumo {
+    position: relative;
+    width: 300px;
+    left: 1000px;
+    top: -130px;
+    border: 2px solid #FA00FF;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.line-resumo {
+    width: 90%;
+}
+
+.resumo h2, h3 {
+    color: white;
+    position: relative;
+    left: 20px;
+}
+
+.resumo .total-pedido {
+    position: relative;
+    left: 200px;
+    top: -36px;
+    width: 100px;
+}
+
+.resumo .btn-resumo {
+    position: relative;
+    left: 50%;
+    margin-left: -85px;
+    top: -23px;
+    border: none;
+    border-radius: 20px;
+    background-color: #FA00FF;
+    width: 60%;
+    height: 40px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+
