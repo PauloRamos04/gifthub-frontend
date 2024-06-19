@@ -1,25 +1,20 @@
-import React from 'react'
-import './styles/paginaInicial.module.css'
-import Rodape from '../../Componentes/Rodape'
-import Banner from '../../Componentes/Banner'
-import ConteudoPrincipal from '../../Componentes/ConteudoPrincipal'
-import NavBar from '../../Componentes/Menu/NavBar'
+import React from 'react';
+import Rodape from '../../Componentes/Rodape/Rodape';
+import Banner from '../../Componentes/Banner';
+import ConteudoPrincipal from '../../Componentes/ConteudoPrincipal/ConteudoPrincipal';
+import NavBar from '../../Componentes/Menu/NavBar';
 
-export default function PaginaInicial() {
+function PaginaInicial() {
   return (
-    <>
-    <menu>
-      <NavBar></NavBar>
-    </menu>
-    <section>
-      <Banner></Banner>
-    </section>
-    <main>
-      <ConteudoPrincipal></ConteudoPrincipal>
-    </main>
-    <footer>
-      <Rodape></Rodape>
-    </footer>
-    </>
-  )
+    <div className="min-h-screen bg-black flex flex-col">
+      <NavBar />
+      <div className="flex-1">
+        <Banner />
+        <ConteudoPrincipal />
+      </div>
+      <Rodape />
+    </div>
+  );
 }
+
+export default PaginaInicial;

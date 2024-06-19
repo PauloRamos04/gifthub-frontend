@@ -1,16 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PaginaInicial from './Paginas/PaginaInicial/PaginaInicial';
-import PaginaCadastro from './Paginas/PaginaCadastro/PaginaCadastro';
-import PaginaLogin from './Paginas/PaginaLogin/PaginaLogin';
-import PaginaCarrinho from './Paginas/PaginaCarrinho/PaginaCarrinho';
-import FinalizarCompra from './Paginas/FinalizarCompra/FinalizarCompra';
-import NavBar from './Componentes/Menu/NavBar';
+import ProdutoDetalhes from "./Paginas/ProdutoDetalhe/ProdutoDetalhe";
+import PaginaCadastro from "./Paginas/PaginaCadastro/PaginaCadastro";
+import PaginaLogin from "./Paginas/PaginaLogin/PaginaLogin";
+import PaginaCarrinho from "./Paginas/PaginaCarrinho/PaginaCarrinho";
 
-export default function App() {
+function App() {
+  const adicionarAoCarrinho = (item) => {
+    // Implementação da função para adicionar ao carrinho
+    console.log('Adicionar ao carrinho:', item);
+    // Aqui você pode implementar a lógica para adicionar o item ao carrinho no estado global, Redux, contexto, etc.
+  };
+
   return (
-    <>
-      <FinalizarCompra />
-    </>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={PaginaInicial} />
+        <Route path="/produto/:id">
+          <ProdutoDetalhes adicionarAoCarrinho={adicionarAoCarrinho} />
+        </Route>
+        <Route path="/cadastro" component={PaginaCadastro} />
+        <Route path="/login" component={PaginaLogin} />
+        <Route path="/carrinho" component={PaginaCarrinho} />
+        {/* Adicione outras rotas conforme necessário */}
+      </Switch>
+    </Router>
   );
 }
+
+export default App;

@@ -1,83 +1,260 @@
-import React from "react";
-import "./styles/PaginaCadastro.css";
+import React, { useState } from "react";
 import NavBar from "../../Componentes/Menu/NavBar";
-import Rodape from '../../Componentes/Rodape';
+import Rodape from "../../Componentes/Rodape/Rodape";
+import logo from "../../img/logo.png";
 import { FaCircle } from "react-icons/fa";
-import { CiCalendarDate } from "react-icons/ci";
+import { FiCalendar } from "react-icons/fi";
+import axios from 'axios'; // Importando Axios
 
 function PaginaCadastro() {
-    return (
-        <div>
-            <NavBar />
-            <form action="" className="form-cadastro">
-                <h1 className="title-cadastro">Criar uma conta</h1>
-                <div className="informacoes-jogador">
-                    <FaCircle className="circle-icon-jogador"/>
-                    <h2 className="subtitle-cadastro">Informações do Jogador</h2>
-                    <div>
-                        <input type="text" name="nome" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-nome">Nome</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="email" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-email">E-mail</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cpf" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cpf">CPF</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="date" name="dt-nasc" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-nasc">Data de Nascimento</label>
-                        <CiCalendarDate className="date-icon"/>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="senha" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-senha">Senha</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="senha" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-repsenha">Repetir Senha</label>
-                    </div>
-                </div>
+  const [usuario, setUsuario] = useState({
+    fullName: "",
+    email: "",
+    login: "",
+    cpf: "",
+    dateOfBirth: "",
+    password: "",
+    confirmPassword: "",
+    address: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "",
+    },
+  });
 
-                <div className="endereco-jogador">
-                    <FaCircle className="circle-icon-jogador"/>
-                    <h2 className="subtitle-cadastro">Endereço do Jogador</h2>
-                    <div>
-                        <input type="text" name="pais" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-pais">País</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cep" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cep">CEP</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="cidade" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-cidade">Cidade</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="text" name="estado" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-estado">Estado</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="rua" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-rua">Rua</label>
-                    </div>
-                    <div className="cadastro">
-                        <input type="password" name="numero" placeholder=" " required className="input-cadastro"/>
-                        <label htmlFor="input" className="label-input-cadastro-numero">Nº</label>
-                    </div>
-                </div>    
-                <button type="submit" className="btn-cadastro">Cadastrar-se</button>
-                <hr className="line-cadastro"/>
-                <a href="#">
-                    <h2 className="tem-conta">Já tenho uma <u>conta</u></h2>
-                </a> 
-            </form>
-            <Rodape />
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUsuario((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAddressChange = (e) => {
+    const { name, value } = e.target;
+    setUsuario((prevState) => ({
+      ...prevState,
+      address: {
+        ...prevState.address,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (usuario.password !== usuario.confirmPassword) {
+      alert("As senhas não coincidem!");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8080/auth/register", usuario);
+      console.log("Resposta do servidor:", response.data);
+      // Lógica para redirecionar ou exibir mensagem de sucesso
+    } catch (error) {
+      if (error.response) {
+        // Erro na resposta do servidor
+        console.error("Erro na requisição:", error.response.data);
+        alert(`Erro: ${error.response.data.message || error.response.data}`);
+      } else if (error.request) {
+        // Erro na requisição, sem resposta
+        console.error("Erro na requisição, sem resposta:", error.request);
+        alert("Erro na requisição. Por favor, tente novamente mais tarde.");
+      } else {
+        // Outro tipo de erro
+        console.error("Erro:", error.message);
+        alert(`Erro: ${error.message}`);
+      }
+    }
+  };
+
+  return (
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col">
+      <NavBar />
+      <div className="container mx-auto flex-grow flex items-center justify-center">
+        <div className="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="mb-6 text-center">
+            <img src={logo} alt="logo" className="h-20 mx-auto mb-4" />
+            <h1 className="text-3xl font-bold text-white">Criar uma conta</h1>
+          </div>
+
+          {/* Formulário de Cadastro */}
+          <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
+            {/* Informações do Usuário */}
+            <div className="col-span-2">
+              <div className="flex items-center mb-4">
+                <FaCircle className="text-pink-500 mr-2 opacity-0" />
+                <h2 className="text-xl">Informações do Usuário</h2>
+              </div>
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Nome Completo"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.fullName}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="login"
+                placeholder="Login"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.login}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="cpf"
+                placeholder="CPF"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.cpf}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="date"
+                name="dateOfBirth"
+                placeholder="Data de Nascimento"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.dateOfBirth}
+                onChange={handleChange}
+              />
+              <FiCalendar className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
+
+            <div className="relative col-span-1">
+              <input
+                type="password"
+                name="password"
+                placeholder="Senha"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirmar Senha"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.confirmPassword}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Endereço do Usuário */}
+            <div className="col-span-2 mt-4">
+              <div className="flex items-center mb-4">
+                <FaCircle className="text-pink-500 mr-2 opacity-0" />
+                <h2 className="text-xl">Endereço do Usuário</h2>
+              </div>
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="street"
+                placeholder="Rua"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.address.street}
+                onChange={handleAddressChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="city"
+                placeholder="Cidade"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.address.city}
+                onChange={handleAddressChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="state"
+                placeholder="Estado"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.address.state}
+                onChange={handleAddressChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="zipCode"
+                placeholder="CEP"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.address.zipCode}
+                onChange={handleAddressChange}
+              />
+            </div>
+            <div className="relative col-span-1">
+              <input
+                type="text"
+                name="country"
+                placeholder="País"
+                required
+                className="w-full p-2 bg-gray-700 border border-gray-600 rounded focus:outline-none"
+                value={usuario.address.country}
+                onChange={handleAddressChange}
+              />
+            </div>
+
+            {/* Botão de Cadastro */}
+            <div className="col-span-2 mt-4">
+              <button
+                type="submit"
+                className="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg font-bold text-lg"
+              >
+                Cadastrar-se
+              </button>
+            </div>
+          </form>
+
+          {/* Link para Login */}
+          <div className="text-center mt-4">
+            <p className="text-gray-400">
+              Já possui uma conta? <a href="#" className="text-pink-500">Faça login aqui</a>
+            </p>
+          </div>
         </div>
-    );
+      </div>
+      <Rodape />
+    </div>
+  );
 }
 
 export default PaginaCadastro;
