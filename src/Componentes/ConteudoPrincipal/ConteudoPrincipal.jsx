@@ -45,11 +45,7 @@ function ConteudoPrincipal() {
               <img src={xboxConsole} alt="Xbox" className="w-full h-auto" />
             </Link>
           </div>
-          <div className="text-center mt-4">
-            <a href="#" className="text-white underline">
-              Ver Mais
-            </a>
-          </div>
+
         </section>
 
         {/* Serviços */}
@@ -71,11 +67,6 @@ function ConteudoPrincipal() {
             <Link to="/produto/10" className="bg-gray-800 rounded-lg overflow-hidden">
               <img src={airbnbService} alt="Airbnb" className="w-full h-auto" />
             </Link>
-          </div>
-          <div className="text-center mt-4">
-            <a href="#" className="text-white underline">
-              Ver Mais
-            </a>
           </div>
         </section>
 
@@ -99,11 +90,6 @@ function ConteudoPrincipal() {
               <img src={valorantPC} alt="Valorant" className="w-full h-auto" />
             </Link>
           </div>
-          <div className="text-center mt-4">
-            <a href="#" className="text-white underline">
-              Ver Mais
-            </a>
-          </div>
         </section>
 
         {/* Mobiles */}
@@ -125,11 +111,6 @@ function ConteudoPrincipal() {
             <Link to="/produto/20" className="bg-gray-800 rounded-lg overflow-hidden">
               <img src={fcMobile} alt="FC Mobile" className="w-full h-auto" />
             </Link>
-          </div>
-          <div className="text-center mt-4">
-            <a href="#" className="text-white underline">
-              Ver Mais
-            </a>
           </div>
         </section>
       </div>

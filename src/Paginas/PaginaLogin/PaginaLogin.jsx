@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import axios from 'axios'; // Importando Axios
+import axios from 'axios';
 import NavBar from "../../Componentes/Menu/NavBar";
 import { useHistory } from 'react-router-dom';
 import Rodape from "../../Componentes/Rodape/Rodape";
 import logo from "../../img/logo.png";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Adicionar a importação do CSS aqui
 
 function PaginaLogin() {
   const [credentials, setCredentials] = useState({
@@ -11,7 +13,7 @@ function PaginaLogin() {
     password: ""
   });
 
-  const history = useHistory(); // Usando useHistory para redirecionamento
+  const history = useHistory();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,27 +31,20 @@ function PaginaLogin() {
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
       localStorage.setItem('username', username);
+      toast.success("Login realizado com sucesso!");
       history.push("/");
     } catch (error) {
       if (error.response) {
-        // Erro na resposta do servidor
-        if (error.response.message === "Usuário inexistente ou senha inválida") {
-          alert("Erro: Usuário inexistente ou senha inválida.");
+        if (error.response.status === 403) {
+          toast.error("Erro: Usuário desabilitado. Verifique seu email para ativar a conta.");
+        } else if (error.response.data.message === "Usuário inexistente ou senha inválida") {
+          toast.error("Erro: Usuário inexistente ou senha inválida.");
         } else {
           console.error("Erro na requisição:", error.response.data);
-          alert(`Erro: ${error.response.data.message || error.response.data}`);
+          toast.error(`Erro: ${error.response.data.message || error.response.data}`);
         }
-      } else if (error.response.message === "Usuário não verificado") {
-        alert("Erro: Usuário não verificado.");
-      }
-      else if (error.request) {
-        // Erro na requisição, sem resposta
-        console.error("Erro na requisição, sem resposta:", error.request);
-        alert("Erro na requisição. Por favor, tente novamente mais tarde.");
       } else {
-        // Outro tipo de erro
-        console.error("Erro:", error.message);
-        alert(`Erro: ${error.message}`);
+        toast.error("Erro: Não foi possível conectar ao servidor.");
       }
     }
   };
@@ -64,7 +59,6 @@ function PaginaLogin() {
             <h1 className="text-3xl font-bold text-white">Iniciar Sessão</h1>
           </div>
 
-          {/* Formulário de Login */}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
               <input
@@ -89,9 +83,13 @@ function PaginaLogin() {
               />
             </div>
             <div className="text-center">
-              <a href="#" className="text-white underline">
+              <button
+                type="button"
+                className="text-white underline"
+                onClick={() => history.push('/recuperar-senha')}
+              >
                 Esqueci a senha
-              </a>
+              </button>
             </div>
             <button
               type="submit"
@@ -101,13 +99,16 @@ function PaginaLogin() {
             </button>
           </form>
 
-          {/* Link para Cadastro */}
           <div className="text-center mt-4">
             <p className="text-gray-400">
               Ainda não tem uma conta?{" "}
-              <a href="#" className="text-pink-500 underline">
+              <button
+                type="button"
+                className="text-pink-500 underline"
+                onClick={() => history.push('/cadastro')}
+              >
                 Cadastre-se
-              </a>
+              </button>
             </p>
           </div>
         </div>
